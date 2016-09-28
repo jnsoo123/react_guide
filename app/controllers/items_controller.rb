@@ -1,14 +1,15 @@
 class ItemsController < ApplicationController
-  respond_to :html
-  respond_to :js, only: :create
-
   def index
     @items = Item.all
   end
 
   def create
-    @item = Item.create(item_params)
-    respond_with(@item)
+    @item = Item.new(item_params)
+    if @item.save
+      render json: @item
+    else
+      render json: @item.errors, status: :unprocessable_entity
+    end
   end
 
   private
