@@ -16,7 +16,7 @@
 
   valid: ->
     @state.name && @state.description
-    
+
   render: ->
     React.DOM.form
       className: 'form-inline'
